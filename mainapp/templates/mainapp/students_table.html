@@ -1,0 +1,66 @@
+{% extends "mainapp/base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-title mb-0">Students</p>
+          <div class="table-responsive">
+            <table class="table table-striped table-borderless">
+              <thead>
+                <tr>
+                  <th>Fullname</th>
+                  <th>Birth date</th>
+                  <th>Specification</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Salary</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>  
+              </thead>
+               <tbody>
+                {% for student in students %}
+                <tr class="font-weight-bold">
+                  <td>{{ student.full_name }}</td>
+                  <td>{{ student.birth_date }}</td>
+                  {% if student.specification == "FRONTEND"%}
+                  <td class="font-weight-medium"> <div class="badge badge-success ">{{ student.specification }}</div></td>
+                  {% elif student.specification == "BACKEND"%}
+                  <td class="font-weight-medium"><div  class="badge badge-success ">{{ student.specification }}</div></td>
+                  {% elif student.specification == "FULLSTACK"%}
+                  <td class="font-weight-medium"><div class="badge badge-success ">{{ student.specification }}</div></td>
+                  {% elif student.specification == "IOS" %}
+                  <td class="font-weight-medium"><div class="badge badge-primary ">{{ student.specification }}</div></td>
+                  {% elif student.specification == "ANDROID"%}
+                  <td class="font-weight-medium"><div class="badge badge-primary">{{ student.specification }}</div></td>
+                  {% elif student.specification == "FLUTTER"%}
+                  <td class="font-weight-medium"><div class="badge badge-primary ">{{ student.specification }}</div></td>
+                  {% elif student.specification == "REACT-N"%}
+                  <td class="font-weight-medium"><div class="badge badge-primary ">{{ student.specification }}</div></td>
+                  {% elif student.specification == "DESKTOP" %}
+                  <td class="font-weight-medium"><div class="badge badge-info ">{{ student.specification }}</div></td>
+                  {% else %}
+                  {% endif %}
+                  <td>+{{ student.phone }}</td>
+                  <td>{{ student.email }}</td>
+                  <td>{{ student.address }}</td>
+                  <td class="font-weight-bold">${{ student.salary }}</td>
+                  <td>
+                    <a class="badge badge-success" href="{% url 'update_student' student.id %}">Update</a>
+                  </td>
+                  <td>
+                    <a class="badge badge-danger" href="{% url 'delete_student' student.id %}">Delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+               </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
