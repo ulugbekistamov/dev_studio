@@ -1,1 +1,1 @@
-# dev_studio
+# dev_studio kodlar masterbranchida
